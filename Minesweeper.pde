@@ -64,7 +64,7 @@ public void displayLosingMessage()
 }
 public void displayWinningMessage()
 {
-    //your code here
+
     String win = “     You Win!”;
     if (isWon())
      for (int i = 0; i < NUM_COLS; i++) {
@@ -73,7 +73,6 @@ public void displayWinningMessage()
 }
 public boolean isValid(int r, int c)
 {
-    //your code here
     if (r >= 0 && r < NUM_ROWS && c >= 0 && c < NUM_COLS)
       return true;
     return false;
@@ -99,7 +98,7 @@ public class MSButton
     private boolean clicked, flagged;
     private String myLabel;
     
-    public MSButton ( int row, int col )
+    public MSButton (int row, int col)
     {
         width = 400/NUM_COLS;
         height = 400/NUM_ROWS;
@@ -109,10 +108,9 @@ public class MSButton
         y = myRow*height;
         myLabel = “”;
         flagged = clicked = false;
-        Interactive.add( this ); // register it with the manager
+        Interactive.add(this); 
     }
 
-// called by manager
     public void mousePressed () 
     {
         clicked = true;
