@@ -65,8 +65,8 @@ public boolean isWon() {
 public void displayLosingMessage() {
   for (int i = 0; i < NUM_ROWS; i++) {
     for (int j = 0; j < NUM_COLS; j++) {
-      buttons[i][j].setLabel("You lose!"); // Display "You lose!" instead of "L"
-      if (mines.contains(buttons[i][j])) {
+      if (mines.contains(buttons[i][j]) && buttons[i][j].getClicked()) {
+        buttons[i][j].setLabel("YOU LOSE!"); // Display "YOU LOSE!" only for the clicked mine
         buttons[i][j].unFlag();
         buttons[i][j].clicker();
       }
