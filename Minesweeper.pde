@@ -71,15 +71,11 @@ public boolean isWon()
   }
   return false;
 }
-public void displayLosingMessage()
-{
-  for (int i = 0; i<NUM_ROWS; i++)
-  {
-    for (int j=0; j<NUM_COLS; j++)
-    {
-      buttons[i][j].setLabel("L");
-      if (mines.contains(buttons[i][j]))
-      {
+public void displayLosingMessage() {
+  for (int i = 0; i < NUM_ROWS; i++) {
+    for (int j = 0; j < NUM_COLS; j++) {
+      buttons[i][j].setLabel("You Lose");
+      if (mines.contains(buttons[i][j])) {
         buttons[i][j].unFlag();
         buttons[i][j].clicker();
       }
