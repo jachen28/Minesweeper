@@ -1,72 +1,63 @@
 import de.bezier.guido.*;
-public static final int NUM_ROWS=10;
-public static final int NUM_COLS=10;
-public static final int NUM_MINES=15;
-private MSButton[][] buttons; //2d array of minesweeper buttons
-private ArrayList <MSButton> mines = new ArrayList<MSButton>(); //ArrayList of just the minesweeper buttons that are mined
+import java.util.ArrayList;
 
-void setup ()
-{
-  size(400, 400);
+public static final int NUM_ROWS = 15;
+public static final int NUM_COLS = 15;
+public static final int NUM_MINES = 15;
+
+private MSButton[][] buttons; // 2d array of minesweeper buttons
+private ArrayList<MSButton> mines = new ArrayList<MSButton>(); // ArrayList of just the minesweeper buttons that are mined
+
+void setup() {
+  size(600, 600); // Adjusted size to accommodate the larger grid
   textAlign(CENTER, CENTER);
 
   // make the manager
-  Interactive.make( this );
+  Interactive.make(this);
 
-  //your code to initialize buttons goes here
+  // your code to initialize buttons goes here
   buttons = new MSButton[NUM_ROWS][NUM_COLS];
-  for (int i = 0; i<NUM_ROWS; i++)
-  {
-    for (int j = 0; j<NUM_COLS; j++)
-    {
+  for (int i = 0; i < NUM_ROWS; i++) {
+    for (int j = 0; j < NUM_COLS; j++) {
       buttons[i][j] = new MSButton(i, j);
     }
   }
 
   setMines();
 }
-public void setMines()
-{
-  for (int i = 0; i<NUM_MINES; i++)
-  {
+
+public void setMines() {
+  for (int i = 0; i < NUM_MINES; i++) {
     int randoRow, randoCol;
-    randoRow = (int)(Math.random()*NUM_ROWS);
-    randoCol = (int)(Math.random()*NUM_COLS);
-    if (!mines.contains(buttons[randoRow][randoCol]))
-    {
+    randoRow = (int)(Math.random() * NUM_ROWS);
+    randoCol = (int)(Math.random() * NUM_COLS);
+    if (!mines.contains(buttons[randoRow][randoCol])) {
       mines.add(buttons[randoRow][randoCol]);
-    } else
-    {
+    } else {
       i--;
     }
   }
 }
 
-public void draw ()
-{
-  background( 0 );
+public void draw() {
+  background(0);
   if (isWon() == true)
     displayWinningMessage();
 }
-public boolean isWon()
-{
+
+public boolean isWon() {
   int sum = 0;
-  for (int i = 0; i<NUM_ROWS; i++)
-  {
-    for (int j=0; j<NUM_COLS; j++)
-    {
-      if (buttons[i][j].getClicked()==true)
-      {
+  for (int i = 0; i < NUM_ROWS; i++) {
+    for (int j = 0; j < NUM_COLS; j++) {
+      if (buttons[i][j].getClicked() == true) {
         sum++;
       }
-      if (buttons[i][j].isFlagged()==true)
-      {
+      if (buttons[i][j].isFlagged() == true) {
         sum--;
       }
     }
   }
-  if (sum+mines.size()==NUM_ROWS*NUM_COLS)
-  {
+  if (sum + mines.size() == NUM_ROWS * NUM_COLS) {
     return true;
   }
   return false;
